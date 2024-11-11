@@ -10,16 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,6 +43,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     // profile
     Route::get("/profile", [ProfileController::class, "profilePage"])->name('profile');
+    Route::put("/profile/update", [ProfileController::class, "profileUpdate"])->name('profile.update');
 
     // categories
     Route::get("categories", [CategoryController::class, 'index'])->name("categories.index");

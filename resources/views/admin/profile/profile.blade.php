@@ -4,16 +4,57 @@
     <div class="container my-4">
         <div class="row">
             <div class="col-6 offset-3">
+                @if (session('profile.update'))
+                    <div class="alert alert-success">
+                        {{ session('profile.update') }}
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 offset-3">
                 <div class="card p-3">
                     <h3>Profile </h3>
-                    <form action="" method="POST">
+                    <form action="{{ route('profile.update') }}" method="POST">
                         @csrf
-                        <input type="text" name="name" placeholder="name" class="form-control my-2">
-                        <input type="text" name="email" placeholder="email" class="form-control my-2">
-                        <input type="text" name="password" placeholder="password" class="form-control my-2">
-                        <input type="text" name="password_confirmation" placeholder="Confirm password"
-                            class="form-control my-2">
-                        <input type="submit" value="Submit" class="btn btn-sm btn-primary">
+                        @method('put')
+                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+
+                        <input type="text" name="name" placeholder="name"
+                            class="form-control my-2 @error('name')
+                            is-invalid
+                        @enderror"
+                            value="{{ old('name') ?? $user->name }}">
+                        @error('name')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+
+                        <input type="text" name="email" placeholder="email"
+                            class="form-control my-2 @error('email')
+                            is-invalid
+                        @enderror"
+                            value="{{ old('email') ?? $user->email }}">
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+
+                        <div class="d-flex">
+                            <input type="radio" name="gender" @if ($user->gender == 'male') checked @endif
+                                value="male" class="mx-1 form-check"> male
+                            <input type="radio" name="gender" @if ($user->gender == 'female') checked @endif
+                                value="female" class="mx-1 form-check"> female
+                        </div>
+                        <div class="my-2">
+                            <textarea name="address" cols="30" rows="5" class="form-control" placeholder="address ... ">{{ old('address') ?? $user->address }}
+                            </textarea>
+                        </div>
+                        @error('address')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                        <div class="d-flex justify-content-between p-2 ">
+                            <input type="submit" value="Submit" class="btn btn-sm btn-primary">
+                            <small><a class="text-danger" href="">Forget Password</a></small>
+                        </div>
                     </form>
                 </div>
             </div>
