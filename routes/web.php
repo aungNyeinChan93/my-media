@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ListController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TrendPostController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,11 +39,7 @@ Route::get("number/{number}", function ($number) {
 
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
 
     // dashboard
     Route::get('/dashboard', function (Request $request) {
@@ -54,4 +54,17 @@ Route::middleware([
     // profile
     Route::get("/profile", [ProfileController::class, "profilePage"])->name('profile');
 
+    // categories
+    Route::get("categories", [CategoryController::class, 'index'])->name("categories.index");
+
+    // lists
+    Route::get("lists", [ListController::class, 'index'])->name('lists.index');
+
+    // posts
+    Route::get("posts", [PostController::class, "index"])->name("posts.index");
+
+    // trend posts
+    Route::get("trendPosts", [TrendPostController::class, 'index'])->name("trendPosts.index");
 });
+
+
