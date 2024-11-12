@@ -44,6 +44,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     // profile
     Route::get("/profile", [ProfileController::class, "profilePage"])->name('profile');
     Route::put("/profile/update", [ProfileController::class, "profileUpdate"])->name('profile.update');
+    Route::get('profile/view', [ProfileController::class, "profileView"])->name('profile.view');
 
     // categories
     Route::get("categories", [CategoryController::class, 'index'])->name("categories.index");

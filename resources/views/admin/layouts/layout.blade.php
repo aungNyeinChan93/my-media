@@ -43,7 +43,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('profile') }}" class="nav-link">
+                            <a href="{{ route('profile.view') }}" class="nav-link">
                                 <i class="fas fa-user-circle"></i>
                                 <p>
                                     My Profile
