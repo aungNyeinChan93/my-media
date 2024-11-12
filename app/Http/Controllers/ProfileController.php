@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -40,5 +41,33 @@ class ProfileController extends Controller
     {
 
         return view("admin.profile.profileView");
+    }
+
+    // password change view
+    public function passwordChange()
+    {
+        return view('admin.profile.passwordChange');
+    }
+
+    // password change Action
+    public function passwordChangeAction(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'oldPassword' => 'required|min:6',
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6|same:password',
+        ]);
+
+        if (!Hash::check($request->oldPassword, Auth::user()->password)) {
+            return back()->withErrors([
+                'oldPassword' => ['The provided password does not match old password!']
+            ]);
+        }
+        User::find(Auth::user()->id)->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return to_route("dashboard")->with("password-change", "Password Change Success!");
     }
 }

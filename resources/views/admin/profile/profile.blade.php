@@ -73,7 +73,8 @@
                         @enderror
                         <div class="d-flex justify-content-between p-2 ">
                             <input type="submit" value="Submit" class="btn btn-sm btn-primary">
-                            <small><a class="text-danger" href="">Forget Password</a></small>
+                            <small><a class="text-danger" href="{{ route('profile.passwordChange') }}">Password
+                                    Change</a></small>
                         </div>
                     </form>
                     <a href="{{ route('profile.view') }}" class="btn btn-sm btn-secondary ml-2">Back</a>

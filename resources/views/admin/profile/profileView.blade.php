@@ -25,7 +25,9 @@
                             <span class="col-4 text-muted">Address </span>
                             <span class="text-danger">{{ auth()->user()->address }}</span>
                         </h5>
-                        <a href="{{ route('profile') }}" class="btn btn-sm btn-info mt-3 mr-2">Edit profile</a>
+                        <a href="{{ route('profile') }}" class="btn btn-sm btn-success  mt-3 mr-2">Edit profile</a>
+                        <a href="{{ route('profile.passwordChange') }}" class="btn btn-sm btn-warning mt-3 mr-2">Password
+                            Change</a>
                         <a href="{{ route('dashboard') }}" class="btn btn-sm btn-secondary mt-3 mr-2">Back</a>
 
                     </div>
