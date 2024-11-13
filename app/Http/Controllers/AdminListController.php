@@ -18,6 +18,6 @@ class AdminListController extends Controller
     public function delete(User $user)
     {
         $user->delete();
-        return back()->with(['delete-user', "delete success!"]);
+        return back()->with('delete-user', "delete success!");
     }
 }

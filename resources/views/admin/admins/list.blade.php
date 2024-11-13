@@ -2,6 +2,21 @@
 
 @section('content')
     <div class="container-sm my-2 ">
+        {{--  delete-user --}}
+        <div class="row">
+            <div class="col-8 offset-2">
+                @if (Session::has('delete-user'))
+                    <div class="alert alert-danger">
+                        {{ Session::get('delete-user') }}
+                    </div>
+                @endif
+            </div>
+        </div>
+
+        {{-- @session('delete-user')
+            {{ Session::get('delete-user') }}
+        @endsession --}}
+
         <div class="row">
             <div class="col-8 offset-2">
                 <div class="card">
@@ -14,7 +29,7 @@
                                 <tr class="table-primary">
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Eamil</th>
+                                    <th>Email</th>
                                     <th>Gender</th>
                                     <th>Address</th>
                                     <th>Action</th>
