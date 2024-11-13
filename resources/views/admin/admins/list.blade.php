@@ -21,7 +21,16 @@
             <div class="col-8 offset-2">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="text-center text-blue">Admin Lists</h4>
+                        <h4 class="text-center text-blue">Admin Lists ||
+                            <small class="text-danger">
+                                @if (count($users) < 2)
+                                    Total User
+                                @else
+                                    Total Users
+                                @endif
+                                ({{ count($users) }})
+                            </small>
+                        </h4>
                     </div>
                     <div class="card-body">
                         <table class=" table table-bordered table-hover">
