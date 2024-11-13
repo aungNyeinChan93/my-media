@@ -28,9 +28,15 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->gender }}</td>
                                         <td>{{ $user->Address }}</td>
-                                        <td>
-                                            <a href="" class=" btn btn-sm btn-danger">Delete</a>
-                                        </td>
+                                        @if (Auth::user()->id != $user->id)
+                                            <td>
+                                                <form action="{{ route('adminList.delete', $user->id) }}" method="POST">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <input type="submit" value="Delete" class="btn btn-sm btn-danger">
+                                                </form>
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

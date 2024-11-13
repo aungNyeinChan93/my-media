@@ -13,4 +13,11 @@ class AdminListController extends Controller
         $users = User::query()->paginate(5);
         return view("admin.admins.list", compact('users'));
     }
+
+    // delete admin
+    public function delete(User $user)
+    {
+        $user->delete();
+        return back()->with(['delete-user', "delete success!"]);
+    }
 }

@@ -65,6 +65,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     // AdminList
     Route::get("adminList", [AdminListController::class, 'list'])->name("adminList.list");
+    Route::delete("adminList/{user}", [AdminListController::class, 'delete'])->name("adminList.delete");
 
 });
 
