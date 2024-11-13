@@ -214,4 +214,9 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+
+    // Bootstrap 4 paginate
+    'pagination' => 'bootstrap-4',
+
+
 ];

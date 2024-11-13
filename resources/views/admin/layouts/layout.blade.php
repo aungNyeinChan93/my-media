@@ -14,7 +14,8 @@
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-white navb
+        ar-light">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
@@ -70,10 +71,10 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="user" class="nav-link">
+                            <a href="{{ route('adminList.list') }}" class="nav-link">
                                 <i class="fas fa-users"></i>
                                 <p>
-                                    User
+                                    Admin Lists
                                 </p>
                             </a>
                         </li>

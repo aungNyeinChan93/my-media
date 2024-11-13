@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminListController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\PostController;
@@ -61,6 +62,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     // trend posts
     Route::get("trendPosts", [TrendPostController::class, 'index'])->name("trendPosts.index");
+
+    // AdminList
+    Route::get("adminList", [AdminListController::class, 'list'])->name("adminList.list");
 
 });
 
