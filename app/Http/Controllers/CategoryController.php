@@ -14,4 +14,27 @@ class CategoryController extends Controller
 
         return view("admin.category.category", compact('categories'));
     }
+
+    // category create
+    public function create(Request $request)
+    {
+
+        $rule = [
+            "name" => "required",
+            "description" => "required",
+        ];
+        $fields = $request->validate($rule, [
+            'name.required' => "Category name field is Required!"
+        ]);
+        $category = Category::create($fields);
+        return back()->with('category-create', " $category->name created Success!");
+
+    }
+
+    //  category delete
+    public function delete(Category $category)
+    {
+        $category->delete();
+        return back()->with("category-delete", "$category->name deleted !");
+    }
 }
