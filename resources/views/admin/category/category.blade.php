@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container category">
-        <h3 class="text-center text-danger pb-2">Categories</h3>
+        <h3 class="text-center text-white bg-primary rounded-sm p-2">Categories</h3>
         {{-- create success session --}}
         <div class="row">
             <div class="col-12">
@@ -33,10 +33,24 @@
                     <form action="{{ route('categories.create') }}" method="POST">
                         @csrf
                         <div class="my-1">
-                            <input type="text" name="name" class="form-control" placeholder="Category Name">
+                            <input type="text" name="name"
+                                class="form-control @error('name')
+                                is-invalid
+                            @enderror"
+                                placeholder="Category Name">
+                            @error('name')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="my-1">
-                            <textarea name="description" cols="30" rows="5" class="form-control" placeholder="Category Desc ..."></textarea>
+                            <textarea name="description" cols="30" rows="5"
+                                class="form-control @error('description')
+                                is-invalid
+                            @enderror"
+                                placeholder="Category Desc ..."></textarea>
+                            @error('description')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="my-1">
                             <input class="btn btn-sm btn-success" type="submit" value="Add Category">

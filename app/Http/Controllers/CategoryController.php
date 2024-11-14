@@ -24,7 +24,8 @@ class CategoryController extends Controller
             "description" => "required",
         ];
         $fields = $request->validate($rule, [
-            'name.required' => "Category name field is Required!"
+            'name.required' => "အမျိုးအစားအမည်နယ်ပယ်လိုအပ်သည်",
+            'description.required' => "ဖော်ပြချက်နယ်ပယ်လိုအပ်သည်"
         ]);
         $category = Category::create($fields);
         return back()->with('category-create', " $category->name created Success!");
