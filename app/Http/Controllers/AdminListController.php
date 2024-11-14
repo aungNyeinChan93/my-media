@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 class AdminListController extends Controller
 {
     // admin list view
-    public function list()
+    public function list(Request $request)
     {
-        $users = User::query()->paginate(5);
+        // dump($request->searchKey);
+        $users = User::query()->when($request->searchKey, function ($query) use ($request) {
+            $query->whereAny(["name", 'email', 'address'], 'like', "%" . $request->searchKey . "%");
+        })->paginate(5);
         return view("admin.admins.list", compact('users'));
     }
 
@@ -19,5 +22,16 @@ class AdminListController extends Controller
     {
         $user->delete();
         return back()->with('delete-user', "delete success!");
+    }
+
+    // gender filter
+    public function genderFilter(Request $request)
+    {
+        // dd($request->gender);
+        $users = User::query()
+            ->where('gender', "=", $request->gender)
+            ->paginate(5);
+
+        return view('admin.admins.list', compact('users'));
     }
 }

@@ -12,10 +12,11 @@
                 @endif
             </div>
         </div>
+        {{--  delete-user end --}}
 
-        {{-- @session('delete-user')
-            {{ Session::get('delete-user') }}
-        @endsession --}}
+
+
+
 
         <div class="row">
             <div class="col-8 offset-2">
@@ -32,8 +33,42 @@
                             </small>
                         </h4>
                     </div>
+
+                    {{-- Search Bar --}}
+                    <div class="row mt-2 pr-4">
+                        <div class="col-4 offset-8">
+                            <div class="">
+                                <form action="{{ route('adminList.list') }}" method="GET">
+                                    @csrf
+                                    <div class="input-group">
+                                        <input type="text" name="searchKey" value="{{ request()->searchKey }}"
+                                            class="form-control" placeholder="Search">
+                                        <button type="submit" class=" btn btn-sm btn-info">Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Search Bar End --}}
+
+                    {{-- Gender Option --}}
+                    <div class="row pr-4 mt-1">
+                        <div class="col-4 offset-8 ">
+                            <form action="{{ route('adminList.genderFilter') }}" method="POST">
+                                @csrf
+                                <select name="gender" class="form-control">
+                                    <option value="male" @if (request()->gender == 'male') selected @endif>Male</option>
+                                    <option value="female" @if (request()->gender == 'female') selected @endif>Female</option>
+                                </select>
+                                <button class=" btn btn-sm btn-info mt-1">Confrim</button>
+                            </form>
+                        </div>
+                    </div>
+                    {{-- Gender Option End --}}
+
+
                     <div class="card-body">
-                        <table class=" table table-bordered table-hover">
+                        <table class=   " table table-bordered table-hover">
                             <thead>
                                 <tr class="table-primary">
                                     <th>ID</th>
@@ -51,7 +86,7 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->gender }}</td>
-                                        <td>{{ $user->Address }}</td>
+                                        <td>{{ $user->address }}</td>
                                         @if (Auth::user()->id != $user->id)
                                             <td>
                                                 <form action="{{ route('adminList.delete', $user->id) }}" method="POST">
