@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container category">
-        <h3 class="text-center text-white bg-primary rounded-sm p-2">Categories</h3>
+        <h3 class="text-center text-white bg-secondary rounded-sm p-2">Categories</h3>
         {{-- create success session --}}
         <div class="row">
             <div class="col-12">
@@ -27,6 +27,18 @@
             </div>
         </div>
         {{-- delete session end --}}
+
+        {{-- update session --}}
+        <div class="row">
+            <div class="col-12">
+                @session('category-update')
+                    <div class="alert alert-warning">
+                        <span class="text-white">{{ Session::get('category-update') }}</span>
+                    </div>
+                @endsession
+            </div>
+        </div>
+        {{-- update session end --}}
         <div class="row">
             <div class="col-12">
                 <div class="card p-2">
@@ -59,10 +71,12 @@
                 </div>
             </div>
         </div>
+
+        {{-- category lists --}}
         <div class="row">
             <div class="col-12">
                 <table class=" table table-bordered table-hover table-success p-2 rounded shadow-sm">
-                    <thead class="bg-primary">
+                    <thead class="bg-secondary">
                         <tr>
                             <th>No</th>
                             <th>Category</th>
@@ -76,12 +90,20 @@
                                 <td>{{ $category->id }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>{{ Str::limit($category->description, 80, '...') }}</td>
-                                <td>
-                                    <form action="{{ route('categories.delete', $category->id) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                    </form>
+                                <td class="">
+                                    <div class="d-flex">
+                                        <span class="mr-2 ">
+                                            <form action="{{ route('categories.delete', $category->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                            </form>
+                                        </span>
+                                        <span>
+                                            <a href="{{ route('categories.edit', $category->id) }}"
+                                                class="btn btn-sm btn-warning">Edit</a>
+                                        </span>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

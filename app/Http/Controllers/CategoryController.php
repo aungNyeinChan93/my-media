@@ -38,4 +38,22 @@ class CategoryController extends Controller
         $category->delete();
         return back()->with("category-delete", "$category->name deleted !");
     }
+
+    // category edit page
+    public function edit(Category $category)
+    {
+        return view('admin.category.edit', compact('category'));
+    }
+
+    // category update action 
+    public function update(Request $request, Category $category)
+    {
+        // dd($request->all());
+        $fields = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+        $category->update($fields);
+        return to_route("categories.index")->with('category-update', 'Category update success!');
+    }
 }

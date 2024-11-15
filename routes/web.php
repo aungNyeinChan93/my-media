@@ -54,7 +54,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     // categories
     Route::get("categories", [CategoryController::class, 'index'])->name("categories.index");
     Route::post("categories", [CategoryController::class, 'create'])->name("categories.create");
-    Route::delete("categories/delete/{category}", [CategoryController::class, 'delete'])->name("categories.delete");
+    Route::delete("categories/{category}", [CategoryController::class, 'delete'])->name("categories.delete");
+    Route::get("categories/{category}", [CategoryController::class, 'edit'])->name("categories.edit");
+    Route::put("categories/{category}", [CategoryController::class, 'update'])->name("categories.update");
 
     // lists
     Route::get("lists", [ListController::class, 'index'])->name('lists.index');
