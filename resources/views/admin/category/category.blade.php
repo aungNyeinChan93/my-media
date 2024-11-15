@@ -72,6 +72,19 @@
             </div>
         </div>
 
+        {{-- search bar --}}
+        <div class="row">
+            <div class="col-4 offset-8 my-2">
+                <form action="{{ route('categories.search') }}" method="POST" class="d-flex">
+                    @csrf
+                    <input type="text" name="searchKey" class="form-control" placeholder="Search"
+                        value="{{ request()->searchKey }}">
+                    <input type="submit" value="Search" class="btn btn-secondary">
+                </form>
+            </div>
+        </div>
+        {{-- search bar end --}}
+
         {{-- category lists --}}
         <div class="row">
             <div class="col-12">

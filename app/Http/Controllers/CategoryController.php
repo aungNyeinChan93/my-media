@@ -56,4 +56,13 @@ class CategoryController extends Controller
         $category->update($fields);
         return to_route("categories.index")->with('category-update', 'Category update success!');
     }
+
+    // search category 
+    public function search(Request $request)
+    {
+        // dd($request->all());
+        $categories = Category::query()->whereAny(['name', 'description'], 'like', "%" . $request->searchKey . "%")->get();
+        // dd($categories);
+        return view('admin.category.category', compact('categories'));
+    }
 }
