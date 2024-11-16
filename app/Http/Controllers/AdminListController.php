@@ -30,7 +30,7 @@ class AdminListController extends Controller
         // dd($request->gender);
         $users = User::query()
             ->where('gender', "=", $request->gender)
-            ->paginate(5);
+            ->paginate(10);
 
         return view('admin.admins.list', compact('users'));
     }

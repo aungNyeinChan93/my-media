@@ -39,6 +39,8 @@
             </div>
         </div>
         {{-- update session end --}}
+
+        {{-- create category --}}
         <div class="row">
             <div class="col-12">
                 <div class="card p-2">

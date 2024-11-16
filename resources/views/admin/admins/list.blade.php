@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container-sm my-2 ">
+
         {{--  delete-user --}}
         <div class="row">
             <div class="col-8 offset-2">
@@ -13,10 +14,6 @@
             </div>
         </div>
         {{--  delete-user end --}}
-
-
-
-
 
         <div class="row">
             <div class="col-8 offset-2">
@@ -66,7 +63,7 @@
                     </div>
                     {{-- Gender Option End --}}
 
-
+                    {{-- users list  --}}
                     <div class="card-body">
                         <table class=   " table table-bordered table-hover">
                             <thead>
