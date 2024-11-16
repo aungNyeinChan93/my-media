@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,7 +22,8 @@ class PostFactory extends Factory
             'title' => fake()->sentence(),
             'description' => fake()->realText(),
             'image' => asset('/postsImage/default.png'),
-            "user_id" => User::inRandomOrder()->first()->id ?? User::factory()
+            "user_id" => User::inRandomOrder()->first()->id ?? User::factory(),
+            "category_id" => Category::factory()
         ];
     }
 }

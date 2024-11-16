@@ -14,7 +14,7 @@
         </div>
 
         {{-- posts list --}}
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-12">
                 @foreach ($posts as $post)
                     <div class="card rounded-sm shadow">
@@ -22,6 +22,13 @@
                             <span>{{ $post->id }} </span> . {{ $post->title }}
                         </div>
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class='text-muted'> Category ~ <span class="text-danger">
+                                            {{ $post->category->name }}</span>
+                                    </p>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-6">
                                     {{ $post->description }}
