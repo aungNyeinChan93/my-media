@@ -62,9 +62,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     // lists
     Route::get("lists", [ListController::class, 'index'])->name('lists.index');
 
-    // posts
-    Route::get("posts", [PostController::class, "index"])->name("posts.index");
-
     // trend posts
     Route::get("trendPosts", [TrendPostController::class, 'index'])->name("trendPosts.index");
 
@@ -72,6 +69,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get("adminList", [AdminListController::class, 'list'])->name("adminList.list");
     Route::post("adminList", [AdminListController::class, 'genderFilter'])->name("adminList.genderFilter");
     Route::delete("adminList/delete/{user}", [AdminListController::class, 'delete'])->name("adminList.delete");
+
+    // posts
+    Route::get("posts", [PostController::class, "index"])->name("posts.index");
+    Route::get("posts/create", [PostController::class, "create"])->name("posts.create");
+    Route::post("posts/create", [PostController::class, "createAction"])->name("posts.createAction");
 
 });
 
