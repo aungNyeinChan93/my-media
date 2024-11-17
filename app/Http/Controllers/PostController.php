@@ -34,24 +34,19 @@ class PostController extends Controller
         if ($validate->fails()) {
             return back()->withErrors($validate)->withInput();
         }
+
         if ($request->hasFile('image')) {
             $fileName = uniqid() . '_Anc_' . $request->file("image")->getClientOriginalName();
             $request->file('image')->move(public_path('/postsImage'), $fileName);
-            Post::create([
-                "title" => $request->title,
-                "description" => $request->description,
-                "category_id" => $request->category,
-                "image" => $fileName,
-                "user_id" => auth()->user()->id,
-            ]);
-        } else {
-            Post::create([
-                "title" => $request->title,
-                "description" => $request->description,
-                "category_id" => $request->category,
-                "user_id" => auth()->user()->id,
-            ]);
         }
+
+        Post::create([
+            "title" => $request->title,
+            "description" => $request->description,
+            "category_id" => $request->category,
+            "image" => !empty($request->hasFile('image')) ? $fileName : null,
+            "user_id" => auth()->user()->id,
+        ]);
 
         return to_route('posts.index')->with('create-post', 'Post create success!');
     }
