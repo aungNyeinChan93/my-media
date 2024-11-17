@@ -13,20 +13,32 @@
                             @csrf
                             <div class="my-2">
                                 <input type="text" name="title" class="form-control" placeholder="title">
+                                @error('title')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="my-2">
                                 <textarea name="description" cols="30" rows="10" class="form-control" placeholder="description"></textarea>
+                                @error('description')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="my-2">
                                 <select name="category" class="form-control">
-                                    <option value="#">Choose Category</option>
+                                    <option value="">Choose Category</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('category')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="my-2">
                                 <input type="file" name="image" class="form-input">
+                                @error('image')
+                                    <small class="d-block text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="my-2">
                                 <input type="submit" value="Add Post" class="btn btn-sm btn-success">

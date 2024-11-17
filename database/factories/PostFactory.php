@@ -21,7 +21,7 @@ class PostFactory extends Factory
         return [
             'title' => fake()->sentence(),
             'description' => fake()->realText(),
-            'image' => asset('/postsImage/default.png'),
+            'image' => 'default.png',
             "user_id" => User::inRandomOrder()->first()->id ?? User::factory(),
             "category_id" => Category::inRandomOrder()->firstOrFail()->id ?? Category::factory()
         ];

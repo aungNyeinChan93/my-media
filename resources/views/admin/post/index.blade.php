@@ -36,7 +36,14 @@
                     @foreach ($posts as $post)
                         <div class="card rounded-sm shadow">
                             <div class="card-header">
-                                <span>{{ $post->id }} </span> . {{ $post->title }}
+                                <div class="row">
+                                    <span class="col-9">{{ $post->id }} . {{ $post->title }}</span>
+                                    <span>
+                                        {{ $post->user->name }} - created at
+                                        <span class="col-2 text-danger ">{{ $post->created_at->diffForHumans() }}
+                                        </span>
+                                    </span>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -51,7 +58,10 @@
                                         {{ $post->description }}
                                     </div>
                                     <div class="col-6 text-center">
-                                        <img src="{{ asset("$post->image") }}" class=' img-thumbnail w-50' alt="">
+                                        <img @if ($post->image == null) src="{{ asset('/postsImage/default.png') }}"
+                                        @else
+                                            src="{{ asset("/postsImage/$post->image") }}" @endif
+                                            class=' img-thumbnail w-50' alt="">
                                     </div>
                                 </div>
                             </div>
@@ -60,5 +70,15 @@
                 </div>
             @endif
         </div>
+        {{-- posts list end --}}
+
+        {{-- pagiante  --}}
+        <div class="row">
+            <div class="col-2 offset-10 ">
+
+                {{ $posts->links('pagination::bootstrap-4') }}
+            </div>
+        </div>
+        {{-- pagiante end --}}
     </div>
 @endsection
