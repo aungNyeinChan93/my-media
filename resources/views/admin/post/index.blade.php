@@ -13,6 +13,19 @@
             </div>
         </div>
 
+        {{-- create-post session --}}
+        <div class="row">
+            <div class="col-12">
+                @if (session('create-post'))
+                    <div class="alert alert-success p-1 rounded my-1">
+                        {{ session('create-post') }}
+                    </div>
+                @endif
+            </div>
+        </div>
+        {{-- create-post session end --}}
+
+
         {{-- create post --}}
         <div class="row">
             <div class="col-12 ">
