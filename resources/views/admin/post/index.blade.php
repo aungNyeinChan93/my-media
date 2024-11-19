@@ -25,6 +25,19 @@
         </div>
         {{-- create-post session end --}}
 
+        {{-- posts delete session --}}
+        <div class="row">
+            <div class="col-12">
+                @session('delete-post')
+                    <div class="alert alert-danger p-1 rounded my-1">
+                        {{ session('delete-post') }}
+                    </div>
+                @endsession
+            </div>
+        </div>
+
+        {{-- posts delete session end --}}
+
 
         {{-- create post --}}
         <div class="row">
@@ -72,11 +85,18 @@
                                     </div>
                                     <div class="col-6 text-center">
                                         <img @if ($post->image == null) src="{{ asset('/postsImage/default.png') }}"
-                                        @else
-                                            src="{{ asset("/postsImage/$post->image") }}" @endif
+                                            @else
+                                                src="{{ asset("/postsImage/$post->image") }}" @endif
                                             class=' img-thumbnail w-50' alt="">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="card-footer">
+                                <form action="{{ route('post.delete', $post->id) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <input type="submit" value="Delete" class="btn btn-sm btn-danger">
+                                </form>
                             </div>
                         </div>
                     @endforeach

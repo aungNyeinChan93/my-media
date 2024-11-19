@@ -74,6 +74,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get("posts", [PostController::class, "index"])->name("posts.index");
     Route::get("posts/create", [PostController::class, "create"])->name("posts.create");
     Route::post("posts/create", [PostController::class, "createAction"])->name("posts.createAction");
+    Route::delete('posts/delete/{post}', [PostController::class, 'delete'])->name('post.delete');
 
 });
 

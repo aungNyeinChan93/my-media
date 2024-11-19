@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -51,6 +52,20 @@ class PostController extends Controller
         return to_route('posts.index')->with('create-post', 'Post create success!');
     }
 
+    // delete post
+    public function delete(Post $post)
+    {
+        // dd($post);
+        if (File::exists(public_path("/postsImage/$post->image"))) {
+            // unlink(public_path() . '/postsImage/' . $post->image);
+            File::delete(public_path("/postsImage/$post->image"));
+        }
+        $post->delete();
+        return to_route("posts.index")->with('delete-post', 'Post delete success');
+
+    }
+
+    #####
     // postCreateValidation
     private function postCreateValidation($request)
     {
