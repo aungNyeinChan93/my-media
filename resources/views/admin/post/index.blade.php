@@ -38,6 +38,18 @@
 
         {{-- posts delete session end --}}
 
+        {{-- delete-post session --}}
+        <div class="row">
+            <div class="col-12">
+                @session('update-post')
+                    <div class="alert alert-warning p-1 rounded my-1">
+                        {{ Session::get('update-post') }}
+                    </div>
+                @endsession
+            </div>
+        </div>
+        {{-- delete-post session end --}}
+
 
         {{-- create post --}}
         <div class="row">
@@ -91,12 +103,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <form action="{{ route('post.delete', $post->id) }}" method="POST">
+                            <div class="card-footer d-flex ">
+                                <form action="{{ route('posts.delete', $post->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <input type="submit" value="Delete" class="btn btn-sm btn-danger">
                                 </form>
+                                <a href="{{ route('posts.edit', $post->id) }}"
+                                    class=" mx-2 btn btn-sm btn-secondary">Edit</a>
                             </div>
                         </div>
                     @endforeach
