@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +21,23 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+
+// auth test
+Route::get('test', function () {
+    return 'test ';
+});
+Route::get('categories', function () {
+    $categories = Category::all();
+    return response()->json([
+        'data' => $categories
+    ]);
+});
+
 // Auth
 Route::post('users/register', [AuthController::class, 'register']);
 Route::post('users/login', [AuthController::class, 'login']);
 Route::post('users/logout', [AuthController::class, 'logout'])->middleware("auth:sanctum");
 
 
-// auth test
-Route::get('test', function () {
-    return 'test ';
-})->middleware("auth:sanctum");
+// posts
+Route::get('posts', [PostController::class, 'index']);
