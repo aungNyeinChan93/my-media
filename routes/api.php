@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,18 +27,16 @@ use App\Http\Controllers\Api\PostController;
 Route::get('test', function () {
     return 'test ';
 });
-Route::get('categories', function () {
-    $categories = Category::all();
-    return response()->json([
-        'data' => $categories
-    ]);
-});
 
 // Auth
 Route::post('users/register', [AuthController::class, 'register']);
 Route::post('users/login', [AuthController::class, 'login']);
 Route::post('users/logout', [AuthController::class, 'logout'])->middleware("auth:sanctum");
 
-
 // posts
 Route::get('posts', [PostController::class, 'index']);
+Route::post('posts/search', [PostController::class, 'search']);
+
+// Category
+Route::get('categories', [CategoryController::class, 'index']);
+// Route::get('categories/search', [CategoryController::class, 'search']);
