@@ -39,4 +39,4 @@ Route::post('posts/search', [PostController::class, 'search']);
 
 // Category
 Route::get('categories', [CategoryController::class, 'index']);
-// Route::get('categories/search', [CategoryController::class, 'search']);
+Route::post('categories/search', [CategoryController::class, 'search']);

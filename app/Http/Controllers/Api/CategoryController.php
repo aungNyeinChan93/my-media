@@ -19,5 +19,21 @@ class CategoryController extends Controller
     }
 
     // search Category name
+    public function search(Request $request)
+    {
+        if ($request->key != null) {
+            $category = Category::query()->where('name', 'like', "%" . $request->key . "%")->firstOrFail();
+            return response()->json([
+                'message' => 'success',
+                'data' => $category->posts
+            ]);
+        } else {
+            $posts = Post::query()->get();
+            return response()->json([
+                'message' => 'success',
+                'data' => $posts
+            ]);
+        }
+    }
 
 }
