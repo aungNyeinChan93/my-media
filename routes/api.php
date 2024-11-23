@@ -36,6 +36,7 @@ Route::post('users/logout', [AuthController::class, 'logout'])->middleware("auth
 // posts
 Route::get('posts', [PostController::class, 'index']);
 Route::post('posts/search', [PostController::class, 'search']);
+Route::get('posts/detail/{post}', [PostController::class, 'detail']);
 
 // Category
 Route::get('categories', [CategoryController::class, 'index']);

@@ -28,4 +28,14 @@ class PostController extends Controller
             'data' => $posts
         ], 200);
     }
+
+    // post detail
+    public function detail(Post $post)
+    {
+        return response()->json([
+            'message' => 'success',
+            'data' => $post,
+            'category' => $post->category->name
+        ]);
+    }
 }
