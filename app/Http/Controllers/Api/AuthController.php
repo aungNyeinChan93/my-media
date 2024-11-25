@@ -44,6 +44,10 @@ class AuthController extends Controller
                     'message' => "your password is wrong!"
                 ]);
             }
+        } else {
+            return response()->json([
+                'message' => 'Something Wrong ...!'
+            ]);
         }
 
         $token = $user->createToken($user->name)->plainTextToken;
