@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ActionLogsController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,3 +42,6 @@ Route::get('posts/detail/{post}', [PostController::class, 'detail']);
 // Category
 Route::get('categories', [CategoryController::class, 'index']);
 Route::post('categories/search', [CategoryController::class, 'search']);
+
+// ActionLogs
+Route::post('actionLogs/post/view', [ActionLogsController::class, 'view']);
