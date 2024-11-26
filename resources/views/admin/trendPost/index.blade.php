@@ -11,40 +11,41 @@
                     <div class="card-body">
                         <table class="table table-bordered table-hover p-2">
                             <thead class="bg-secondary">
-                                <tr>
-                                    <th>ID</th>
+                                <tr class="text-center">
+                                    <th>Post ID</th>
                                     <th>Post Name</th>
                                     <th>View Counts</th>
                                     <th>Post Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($posts as $post)
+                            <tbody class="">
+                                @foreach ($actionLogs as $actionLog)
                                     <tr>
-                                        <td>{{ $post->id }}</td>
-                                        <td>{{ $post->title }}</td>
+                                        <td>{{ $actionLog->post->id }}</td>
+                                        <td>{{ $actionLog->post->title }}</td>
                                         <td>
-                                            view Counts
+                                            {{ $actionLog->count }}
                                         </td>
-                                        <td>
-                                            @if ($post->image == null)
+                                        <td class="text-center">
+                                            @if ($actionLog->post->image == null)
                                                 <img src="{{ asset('/postsImage/default.png') }}" alt="img"
                                                     class=" img-fluid w-25">
                                             @else
-                                                <img src="{{ asset('/postsImage/' . $post->image) }}" alt=""
-                                                    class=" img-fluid w-25">
+                                                <img src="{{ asset('/postsImage/' . $actionLog->post->image) }}"
+                                                    alt="" class=" img-fluid w-25">
                                             @endif
                                         </td>
                                         <td>
-                                            <button class="btn btn-secondary">Detail</button>
+                                            <a href="{{ route('trendPosts.detail', $actionLog->post->id) }}"
+                                                class="btn btn-sm btn-secondary">Detail</a>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         <div class="paginate mt-4">
-                            {{ $posts->links('pagination::bootstrap-5') }}
+                            {{ $actionLogs->links('pagination::bootstrap-5') }}
                         </div>
                     </div>
                 </div>
